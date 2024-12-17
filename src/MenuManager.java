@@ -97,6 +97,9 @@ public class MenuManager {
         }
         return meals.stream().filter(meal -> meal.getMealName().equals(mealName)).findAny().orElse(null);
     }
+    public Meal callfindMeal(String category, String mealName) {
+        return findMeal(category,mealName);
+    }
     public boolean validMealAddition(String name,String category){
             List<Meal> meals = menu.get(category);
             return meals == null || meals.stream().noneMatch(meal -> meal.getMealName().equals(name));

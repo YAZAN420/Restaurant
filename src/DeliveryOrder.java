@@ -1,10 +1,17 @@
+import java.io.Serial;
 import java.util.ArrayList;
-public class DeliveryOrder extends Order {
+import java.io.Serializable;
+
+public class DeliveryOrder extends Order implements Serializable{
+    @Serial
+    private static final long serialVersionUID = 1L;
     String address;
-    public DeliveryOrder(ArrayList<Meal> orderList, double tip, String address) throws CustomException {
-        super(orderList, tip);
+
+    public DeliveryOrder(ArrayList<Meal> orderList, double tip, int orderID, String status, boolean isCancelable, String address) throws CustomException {
+        super(orderList, tip, orderID, status, isCancelable);
         this.address = address;
     }
+
     public void setAddress(String address) {
         this.address = address;
     }
