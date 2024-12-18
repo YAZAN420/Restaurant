@@ -8,15 +8,32 @@ public class Main {
         MenuManager mg=new MenuManager();
         //mg.editFromMenu();
         //mg.addToMenu();
-        Order o = null;
-        try{
-        o = OrderSystem.createOrder();}
-        catch (CustomException e){
-            System.out.println("k");
+        OrderStorage.loadOrdersFromFile();
+        //OrderStorage.clearFile();
+        Order firstOrder = null;
+        try {
+            firstOrder = OrderSystem.createOrder();
+            System.out.println("First order created successfully: " );
+        } catch (CustomException e) {
+            System.out.println("Error creating first order: " + e.getMessage());
         }
-        System.out.println("ok");
-//        o.cancelOrder();
-        System.out.println(o.getStatus());
 
+/*
+        try {
+            Thread.sleep(12000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        Order secondOrder = null;
+        try {
+            secondOrder = OrderSystem.createOrder();
+            System.out.println("Second order created successfully: " + secondOrder);
+        } catch (CustomException e) {
+            System.out.println("Error creating second order: " + e.getMessage());
+        }
+
+*/
     }
 }
