@@ -1,4 +1,3 @@
-import java.io.*;
 import java.util.*;
 public class OrderSystem {
     public static Order createOrder() throws CustomException {
@@ -33,8 +32,25 @@ public class OrderSystem {
                 } else {
                     System.out.println("Category or meal is not available ! ");
                 }
-                System.out.println("Do you want to add another meal? (yes/no)");
+                System.out.println("Do you want to remove meal? (yes/no)");
                 String response = scanner.nextLine();
+                if (response.equalsIgnoreCase("yes")) {
+                    System.out.println("Enter Meal Name: ");
+                    mealName = scanner.nextLine();
+                    boolean mealRemoved = false;
+                    for (Meal me : meals) {
+                        if (me.getMealName().equalsIgnoreCase(mealName)) {
+                            meals.remove(me);
+                            mealRemoved = true;
+                            break;
+                        }
+                    }
+                    if (!mealRemoved) {
+                        System.out.println("Meal not found in the order!");
+                    }
+                }
+                System.out.println("Do you want to add another meal? (yes/no)");
+                response = scanner.nextLine();
                 if (response.equalsIgnoreCase("no")) {
                     if (choice == 1) {
                         System.out.println("Enter Table Number:");
@@ -60,14 +76,12 @@ public class OrderSystem {
             }
             System.out.println("Do you want to add notes? (yes/no) ");
             String q = scanner.nextLine();
-            notes = null;
             if (q.equals("yes")) {
                 notes = scanner.nextLine();
             }
             else{
                 notes = "no notes";
             }
-
         Order order = null;
         String status = "Preparing";
         if (choice == 1) {
@@ -96,5 +110,4 @@ public class OrderSystem {
             OrderStorage.saveOrdersToFile(currentOrders);}
         return order;
     }
-
 }

@@ -54,14 +54,14 @@ public abstract class Order implements Serializable{
                 isCancelable = false;
                 setStatus("Prepared");
             }
-        }, time*1000);
+        }, time*1000L);
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 isCancelable = false;
                 setStatus("Delivered");
             }
-        }, time + 10000);
+        }, time*1000L + 10000);
     }
     public void cancelOrder() {
         if (isCancelable) {

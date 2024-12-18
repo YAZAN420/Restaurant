@@ -2,8 +2,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
+
 
 public class OrderStorage {
     public static void saveOrdersToFile(List<Order> orders) {
@@ -66,8 +65,8 @@ public class OrderStorage {
             if (order.getNotes() != null && !order.getNotes().isEmpty()) {
                 writer.write("Notes: " + order.getNotes() + "\n");
             }
-            writer.write("Tip: " + (order != null ? order.getTip() : 0) + "\n");
-            writer.write("Total Price: " + (order != null ? order.bill() : 0) + "$\n");
+            writer.write("Tip: " + order.getTip() + "\n");
+            writer.write("Total Price: " + order.bill() + "$\n");
             writer.write("Order Status: " + status + "\n");
             writer.write("____________________\n");
         } catch (IOException e) {
@@ -76,19 +75,13 @@ public class OrderStorage {
     }
     public static void rewriteTxtFileFromObjects(String objectFilePath, String txtFilePath) {
         List<Order> orders = OrderStorage.loadOrdersFromFile();
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(txtFilePath, false))) {
-            for (Order order : orders) {
-                writeOrderToFile(order,
-                        order.getNotes(),
-                        (order instanceof DineInOrder) ? ((DineInOrder) order).getTableNumber() : -1,
-                        (order instanceof DeliveryOrder) ? ((DeliveryOrder) order).getAddress() : null,
-                        order.getStatus());
-            }
-            System.out.println("File FullOrder.txt has been updated successfully.");
-        } catch (IOException e) {
-            System.out.println("Error while writing to the file: " + e.getMessage());
+        for (Order order : orders) {
+            writeOrderToFile(order,
+                    order.getNotes(),
+                    (order instanceof DineInOrder) ? ((DineInOrder) order).getTableNumber() : -1,
+                    (order instanceof DeliveryOrder) ? ((DeliveryOrder) order).getAddress() : null,
+                    order.getStatus());
         }
-
+        System.out.println("File FullOrder.txt has been updated successfully.");
     }
 }

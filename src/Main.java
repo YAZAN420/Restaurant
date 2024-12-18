@@ -1,8 +1,6 @@
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.Scanner;
 public class Main {
-    static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) throws IOException {
         MenuManager.setMenu(MenuHandle.loadMenu());
         MenuManager mg=new MenuManager();
