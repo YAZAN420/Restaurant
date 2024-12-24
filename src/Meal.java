@@ -1,4 +1,9 @@
-public class Meal {
+import java.io.Serial;
+import java.io.Serializable;
+
+public class Meal implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
     private String mealName;
     private String category;
     private String ingredients;
