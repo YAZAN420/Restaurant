@@ -11,7 +11,7 @@ public class Service {
         }
         try {
             String passwordHashed = hashPassword(user.getPassword());
-            saveUserToFile(user.getName(), user.getEmail(), passwordHashed);
+            saveUserToFile(user.getName(), user.getEmail(), passwordHashed,user.getRole());
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
@@ -43,9 +43,9 @@ public class Service {
             throw new RuntimeException("not found");
         }
     }
-    public void saveUserToFile(String name, String email, String hashedPassword) {
+    public static void saveUserToFile(String name, String email, String hashedPassword, Role role) {
         try (FileWriter fw = new FileWriter(users, true)) {
-            fw.write(name + "," + email + "," + hashedPassword +"\n");
+            fw.write(name + "," + email + "," + hashedPassword +","+role.name()+"\n");
         } catch (IOException e) {
             e.printStackTrace();
         }

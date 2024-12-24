@@ -1,5 +1,20 @@
 import java.util.*;
 public class OrderSystem {
+    public static double bill(Order order){
+        double fullPrice = 0;
+        for(Meal m : order.getOrderList()){
+            fullPrice += m.getMealPrice();
+        }
+        return Math.round((fullPrice + order.getTip()) * 100.0) / 100.0;
+    }
+    public static void addListener(ArrayList<OrderStatusListener> listeners, OrderStatusListener listener) {
+        listeners.add(listener);
+    }
+    public static void notifyListeners(ArrayList<OrderStatusListener> listeners, Order order) {
+        for (OrderStatusListener listener : listeners) {
+            listener.onStatusChanged(order, order.getStatus());
+        }
+    }
     public static Order createOrder() throws CustomException {
         int choice,num,time=0;
         ArrayList<Meal> meals;
@@ -101,10 +116,17 @@ public class OrderSystem {
         }
         if (order != null){
             Notification notificationService = new Notification();
-            order.addListener(notificationService);
+            addListener(order.getListeners(),notificationService);
             OrderStatusFileUpdater fileUpdater = new OrderStatusFileUpdater();
-            order.addListener(fileUpdater);
+            addListener(order.getListeners(),fileUpdater);
             OrderStorage.writeOrderToFile(order, notes, num, address ,status);
+            new ReportService().giveReportInfo(order.dateOfOrder,order.getOrderList(),bill(order)); //lujain
+//            Order.numOfOrders++;
+            ReportService.customerOrdersNumber.merge(User.getNameOfCustomer(),1,Integer::sum);//lujain
+            ReportHandle.save2Map(ReportService.customerOrdersNumber,"CustomerOrdersNumber.txt");//lujain
+            ReportHandle.save2Map(ReportService.currentReport.mealsCounter,"ReportMealsCounter.txt");//lujain
+
+//            ReportService.addMealsFromOrderToReport();//lujain
             List<Order> currentOrders = OrderStorage.loadOrdersFromFile();
             currentOrders.add(order);
             OrderStorage.saveOrdersToFile(currentOrders);}

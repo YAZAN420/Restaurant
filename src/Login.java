@@ -3,25 +3,21 @@ import java.security.*;
 import java.util.*;
 public class Login {
     private String name, email, password;
-    private static User currentUser;
+    Role role;
     Scanner s = new Scanner(System.in);
     Service ser = new Service();
-
     public Login() {
         try {
             System.out.println("email,password");
             this.email = s.next();
             this.password = s.next();
-            if (!User.isValidEmail(email)) {
-                throw new IllegalArgumentException("Invalid email format");
-            }
             try {
                 this.password=ser.hashPassword(this.password);
             } catch (NoSuchAlgorithmException e) {
                 e.printStackTrace();
             }
             if (userExist(email, password)) {
-                currentUser = new User(name, email, password, password);
+                User.setCurrentUser(new User(name, email, password, role));
                 System.out.println("LoggedIn");
             } else {
                 System.out.println("Email or Password Wrong ");
@@ -38,6 +34,12 @@ public class Login {
                     String[] partsOfLine = line.split(",");
                     if (partsOfLine[1].equals(email) && partsOfLine[2].equals(password)) {
                         this.name = partsOfLine[0];
+                        User.setNameOfCustomer( this.name); // lujain
+                        try {
+                            this.role = Role.valueOf(partsOfLine[3].toUpperCase());
+                        } catch (IllegalArgumentException e) {
+                            throw new IllegalArgumentException("Invalid role in file: " + partsOfLine[3]);
+                        }
                         return true;
                     }
                 }
@@ -46,8 +48,5 @@ public class Login {
             e.printStackTrace();
         }
         return false;
-    }
-    public static User getCurrentUser() {
-        return currentUser;
     }
 }

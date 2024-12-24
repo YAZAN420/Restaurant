@@ -9,8 +9,8 @@ import java.util.Scanner;
 import java.util.concurrent.ConcurrentHashMap;
 public class MenuHandle {
     private static final File menuFile = new File("menuFile.txt");
-    public static Map<String,List<Meal>> loadMenu()  { 
-         if (!menuFile.exists() || menuFile.length() == 0) return new ConcurrentHashMap<>();
+    public static Map<String,List<Meal>> loadMenu()  {
+        if (!menuFile.exists() || menuFile.length() == 0) return new ConcurrentHashMap<>();
         Map<String,List<Meal>> menu = new ConcurrentHashMap<>();
         try (Scanner fileRead = new Scanner(menuFile)) {
             String category = null , mealName , ingredients;
@@ -39,7 +39,7 @@ public class MenuHandle {
         return menu;
     }
     public static void saveMenu(Map<String,List<Meal>> menu){
-          try (FileWriter fw = new FileWriter(menuFile)) {
+        try (FileWriter fw = new FileWriter(menuFile)) {
             for (Map.Entry<String, List<Meal>> entry : menu.entrySet()) {
                 fw.write("* " + entry.getKey() +'\n');
                 for (Meal m : entry.getValue()) {
@@ -47,7 +47,7 @@ public class MenuHandle {
                 }
             }
         } catch (IOException e) {
-           throw new RuntimeException("Error writing menu to file: " + e.getMessage());
+            throw new RuntimeException("Error writing menu to file: " + e.getMessage());
         }
     }
 }

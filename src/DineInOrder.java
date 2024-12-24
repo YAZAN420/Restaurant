@@ -2,6 +2,7 @@ import java.io.Serial;
 import java.util.ArrayList;
 import java.io.Serializable;
 
+@SuppressWarnings("unused")
 public class DineInOrder extends Order implements Serializable{
     @Serial
     private static final long serialVersionUID = 1L;

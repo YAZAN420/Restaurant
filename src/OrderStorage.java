@@ -1,4 +1,5 @@
 import java.io.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -14,6 +15,7 @@ public class OrderStorage {
             System.out.println("Error while saving orders: " + e.getMessage());
         }
     }
+    @SuppressWarnings("unchecked")
     public static List<Order> loadOrdersFromFile() {
         String filePath = "orders.dat";
         List<Order> orders = new ArrayList<>();
@@ -45,6 +47,11 @@ public class OrderStorage {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("FullOrder.txt", true))) {
             writer.write("Order " + (order != null ? order.getOrderID() : 0));
             writer.newLine();
+            order.dateOfOrder = String.valueOf(LocalDate.now());//lujain
+            writer.write(order.dateOfOrder);//lujain
+            writer.newLine();//lujain
+            writer.write(User.getNameOfCustomer());
+            writer.newLine();
             if (order instanceof DineInOrder) {
                 writer.write("Order Type: DineIn Order\n");
                 writer.write("Table Number: " + tableNumber + "\n");
@@ -66,15 +73,21 @@ public class OrderStorage {
                 writer.write("Notes: " + order.getNotes() + "\n");
             }
             writer.write("Tip: " + order.getTip() + "\n");
-            writer.write("Total Price: " + order.bill() + "$\n");
+            writer.write("Total Price: " + OrderSystem.bill(order) + "$\n");
             writer.write("Order Status: " + status + "\n");
             writer.write("____________________\n");
+
         } catch (IOException e) {
             System.out.println("An error occurred while writing to the file: " + e.getMessage());
         }
     }
     public static void rewriteTxtFileFromObjects(String objectFilePath, String txtFilePath) {
         List<Order> orders = OrderStorage.loadOrdersFromFile();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(txtFilePath, false))) {
+
+        } catch (IOException e) {
+            System.out.println("Error while clearing the file: " + e.getMessage());
+        }
         for (Order order : orders) {
             writeOrderToFile(order,
                     order.getNotes(),

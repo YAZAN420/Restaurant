@@ -1,17 +1,21 @@
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+
 public class MenuManager {
     private static Map<String, List<Meal>> menu = new ConcurrentHashMap<>();
     static final Scanner scan = new Scanner(System.in);
     public void deleteFromMenu(String inCategory , String nameDelete){
+        User.checkPermission(User.getCurrentUser().getRole(), Permission.DELETE_MEAL);
         inCategory=formatCategory(inCategory);
         Meal meal = findMeal(inCategory,nameDelete);
         if(meal == null ) return;
         menu.get(inCategory).remove(meal);
         MenuHandle.saveMenu(menu);
     }
-    public void addToMenu () throws IOException {
+
+    public void addToMenu() throws IOException {
+        User.checkPermission(User.getCurrentUser().getRole(), Permission.ADD_MEAL);
         System.out.println("category:");
         String category = scan.nextLine();
         category=formatCategory(category);
@@ -37,15 +41,17 @@ public class MenuManager {
             System.err.println("error: "+ e.getMessage());
         }
     }
-    public void editFromMenu(){
+
+    public void editFromMenu() {
+        User.checkPermission(User.getCurrentUser().getRole(), Permission.EDIT_MEAL);
         System.out.println("choose category");
         String category = scan.nextLine();
         category=formatCategory(category);
         System.out.println("choose name");
         String name = scan.nextLine();
-            Meal meal = findMeal(category, name);
-            try {
-                if (meal == null) throw new IllegalArgumentException("invalid meal name");
+        Meal meal = findMeal(category, name);
+        try {
+            if (meal == null) throw new IllegalArgumentException("invalid meal name");
             System.out.println("choose to edit: name / ingredients / price / minutes ");
             String choice = scan.nextLine();
             if (choice.equals("name")) editName(meal);
@@ -53,9 +59,9 @@ public class MenuManager {
             else if (choice.equals("price")) editPrice(meal);
             else if (choice.equals("minutes")) editMinutesNeeded(meal);
             else System.err.println("Invalid choice! Please try again.");}
-            catch (IllegalArgumentException e) {
-               System.err.println("something wrong "+e.getMessage());
-            }
+        catch (IllegalArgumentException e) {
+            System.err.println("something wrong "+e.getMessage());
+        }
     }
     public void editName(Meal meal){
         System.out.println("choose new name");
@@ -72,9 +78,9 @@ public class MenuManager {
     public void editPrice(Meal meal) throws IllegalArgumentException{
         System.out.println("choose new price > 0");
         try{
-        double price= scan.nextDouble();
-        if(price <=0 ) throw new IllegalArgumentException("price should be > 0");
-        meal.setMealPrice(price);}
+            double price= scan.nextDouble();
+            if(price <=0 ) throw new IllegalArgumentException("price should be > 0");
+            meal.setMealPrice(price);}
         catch (NumberFormatException e) {
             System.err.println("Invalid number format! Please try again.");}
 
@@ -101,9 +107,9 @@ public class MenuManager {
         return findMeal(category,mealName);
     }
     public boolean validMealAddition(String name,String category){
-            List<Meal> meals = menu.get(category);
-            return meals == null || meals.stream().noneMatch(meal -> meal.getMealName().equals(name));
-        }
+        List<Meal> meals = menu.get(category);
+        return meals == null || meals.stream().noneMatch(meal -> meal.getMealName().equals(name));
+    }
     private String formatCategory(String category) {
         return (category.substring(0, 1).toUpperCase() + category.substring(1).toLowerCase()).trim();
     }

@@ -1,1 +1,2 @@
-yazan,helloworld@gmail.com,dd3ae9be80945d2d0d73481d80dd900dd3a7ddd9d116c9df2dcbeea788ffb5e3
+Ahmed,helloyou@gmail.com,5adb5b816dbd353cad6a77de94bfe923a2a49fc76df0b6c048d0a0f9033b9137,ADMIN
+Yazan232,hellome@gmail.com,5adb5b816dbd353cad6a77de94bfe923a2a49fc76df0b6c048d0a0f9033b9137,EMPLOYEE

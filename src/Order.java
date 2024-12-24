@@ -1,12 +1,14 @@
 import java.io.Serial;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.io.Serializable;
 
 public abstract class Order implements Serializable{
+    String dateOfOrder ;//lujain
+
    private static List<Order> orders = new ArrayList<>();
+   private final ArrayList<OrderStatusListener> listeners = new ArrayList<>();
     @Serial
     private static final long serialVersionUID = 1L;
     private ArrayList<Meal> orderList ;
@@ -17,6 +19,7 @@ public abstract class Order implements Serializable{
     private String notes;
     private int time;
     static int counter=1;
+    private transient OrderTimer orderTimer;
     public Order(ArrayList<Meal> orderList, double tip, int orderID, String status, boolean isCancelable, String notes, int time) throws CustomException {
         setOrderList(orderList);
         setTip(tip);
@@ -27,54 +30,22 @@ public abstract class Order implements Serializable{
         this.time = time;
         counter++;
         orders.add(this);
-        notifyListeners();
-        startOrderProcessing();
-    }
-    private final ArrayList<OrderStatusListener> listeners = new ArrayList<>();
-    public void addListener(OrderStatusListener listener) {
-        listeners.add(listener);
-    }
-    public void setStatus(String newStatus) {
-        this.status = newStatus;
-        notifyListeners();
-    }
-    private void notifyListeners() {
-        for (OrderStatusListener listener : listeners) {
-            listener.onStatusChanged(this, status);
-        }
-    }
-    public void setCancelable(boolean cancelable) {
-        isCancelable = cancelable;
-    }
-    private transient final Timer timer = new Timer();
-    private void startOrderProcessing() {
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                isCancelable = false;
-                setStatus("Prepared");
-            }
-        }, time*1000L);
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                isCancelable = false;
-                setStatus("Delivered");
-            }
-        }, time*1000L + 10000);
+        OrderSystem.notifyListeners(listeners,this);
+        this.orderTimer = new OrderTimer(this);
+        this.orderTimer.startOrderProcessing(time);
     }
     public void cancelOrder() {
         if (isCancelable) {
-            timer.cancel();
+            orderTimer.cancelOrder();
             setStatus("Canceled");
         }
     }
-    public double bill(){
-        double fullPrice = 0;
-        for(Meal m : orderList){
-            fullPrice += m.getMealPrice();
-        }
-        return Math.round((fullPrice + tip) * 100.0) / 100.0;
+    public void setStatus(String newStatus) {
+        this.status = newStatus;
+        OrderSystem.notifyListeners(listeners,this);
+    }
+    public void setCancelable(boolean cancelable) {
+        isCancelable = cancelable;
     }
     public void setOrderList(ArrayList<Meal> orderList) throws CustomException {
         if(orderList != null && !orderList.isEmpty())
@@ -88,11 +59,20 @@ public abstract class Order implements Serializable{
         else
         throw new CustomException("The tip amount must be a positive number.");
     }
+    public void setNotes(String notes) {this.notes = notes;}
+    public void setTime(int time) {
+        this.time = time;
+    }
     public ArrayList<Meal> getOrderList() {return orderList;}
     public double getTip() {return tip;}
     public int getOrderID() {return orderID;}
     public String getStatus() {return status;}
     public boolean isCancelable() {return isCancelable;}
-    public void setNotes(String notes) {this.notes = notes;}
     public String getNotes() {return notes;}
+    public int getTime() {
+        return time;
+    }
+    public ArrayList<OrderStatusListener> getListeners() {
+        return listeners;
+    }
 }

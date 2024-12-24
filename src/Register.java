@@ -7,15 +7,17 @@ public class Register {
     FileWriter fw;
     Scanner s = new Scanner(System.in);
     Register() {
-        try {   
+        try {
             System.out.println("name,email,password,confirmPassword");
             this.name = s.next();
+            User.setNameOfCustomer(name); // lujain
             this.email = s.next();
             this.password = s.next();
             this.confirmPassword = s.next();
             try {
-                User user = new User(name, email, password, confirmPassword);
+                User user = new User(name, email, password, confirmPassword, Role.USER);
                 ser.registerUser(user);
+                ReportService.customerOrdersNumber.computeIfAbsent(this.name,k->0);//lujain
                 System.out.println("User registered successfully!");
             } catch (IllegalArgumentException e) {
                 System.out.println("Error: " + e.getMessage());
