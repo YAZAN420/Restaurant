@@ -1,0 +1,2 @@
+yazan=4
+loulia=27

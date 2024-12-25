@@ -1,0 +1,21 @@
+* Pizza
+= Margherita pizza: Thin crust topped with tomato sauce, fresh mozzarella, and basil leaves.: 18.0:6
+= Pepperoni pizza: Classic pizza with tomato sauce, mozzarella, and pepperoni slices.: 19.98:4
+= Vegetarian supreme pizza: Tomato sauce topped with mushrooms, bell peppers, onions, olives, and spinach.: 17.0:4
+* Main courses
+= Tofu teriyaki bowl: Marinated tofu stir-fried with teriyaki sauce and served over steamed rice.: 18.0:7
+= Grilled salmon with lemon butter: Fresh salmon fillet grilled and topped with a zesty lemon butter sauce.: 20.8:6
+= Chicken parmesan: Breaded chicken breast baked with marinara sauce and melted mozzarella.: 21.0:5
+= Shrimp scampi: Shrimp sautéed with garlic, butter, and white wine, tossed with linguine.: 24.2:5
+* Salads
+= Caesar salad: Crisp romaine lettuce with Caesar dressing, Parmesan, croutons, and optional grilled chicken.: 7.0:2
+= Greek salad: A fresh mix of tomatoes, cucumbers, olives, feta cheese, red onions, and olive oil.: 7.0:2
+= Asian slaw Salad: Shredded cabbage, carrots, and green onions tossed with sesame ginger dressing.: 6.0:2
+= Nicoise salad: Tuna, hard-boiled eggs, green beans, potatoes, olives, and tomatoes served over greens.: 8.5:2
+* Drinks
+= Mango smoothie: Mango blended with yogurt, honey, and milk.: 10.0:2
+= Iced mocha: Espresso, milk, chocolate syrup, and ice.: 6.5:1
+* Desserts
+= Chocolate lava cake: Rich chocolate cake with a gooey molten center.: 18.0:3
+= Banoffee pie: A pie made with bananas, caramel, and whipped cream on a biscuit crust.: 18.5:4
+= Ice cream sundae: Ice cream topped with chocolate syrup, whipped cream, and a cherry.: 13.2:2
