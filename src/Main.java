@@ -1,21 +1,20 @@
 import java.io.IOException;
 import java.util.Scanner;
 public class Main {
-
     static Scanner scan = new Scanner(System.in);
     @SuppressWarnings("unused")
     public static void main(String[] args) throws IOException {
         User.setNameOfCustomer("loulia");// tmp
         MenuManager.setMenu(MenuHandle.loadMenu());//imp
         ReportHandle.loadReport();//imp
-        ReportHandle.load2Map(ReportService.customerOrdersNumber,"CustomerOrdersNumber.txt");//imp
-        ReportHandle.load2Map(Report.mealsCounter,"ReportMealsCounter.txt");//imp
+        ReportHandle.load2Map(ReportService.customerOrdersNumber, "CustomerOrdersNumber.txt");//imp
+        ReportHandle.load2Map(Report.mealsCounter, "ReportMealsCounter.txt");//imp
         OrderStorage.loadOrdersFromFile();
         //OrderStorage.clearFile();
         Order firstOrder = null;
         try {
             firstOrder = OrderSystem.createOrder();
-            System.out.println("First order created successfully: " );
+            System.out.println("First order created successfully: ");
         } catch (CustomException e) {
             System.out.println("Error creating first order: " + e.getMessage());
         }
@@ -48,5 +47,6 @@ public class Main {
             } catch (Exception e) {
                 System.out.println(e);
             }
+        }
     }
-}}
+}
