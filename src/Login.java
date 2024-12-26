@@ -34,7 +34,6 @@ public class Login {
                     String[] partsOfLine = line.split(",");
                     if (partsOfLine[1].equals(email) && partsOfLine[2].equals(password)) {
                         this.name = partsOfLine[0];
-                        User.setNameOfCustomer( this.name); // lujain
                         try {
                             this.role = Role.valueOf(partsOfLine[3].toUpperCase());
                         } catch (IllegalArgumentException e) {

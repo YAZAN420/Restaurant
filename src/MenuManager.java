@@ -13,7 +13,6 @@ public class MenuManager {
         menu.get(inCategory).remove(meal);
         MenuHandle.saveMenu(menu);
     }
-
     public void addToMenu() throws IOException {
         User.checkPermission(User.getCurrentUser().getRole(), Permission.ADD_MEAL);
         System.out.println("category:");
@@ -41,7 +40,6 @@ public class MenuManager {
             System.err.println("error: "+ e.getMessage());
         }
     }
-
     public void editFromMenu() {
         User.checkPermission(User.getCurrentUser().getRole(), Permission.EDIT_MEAL);
         System.out.println("choose category");

@@ -124,10 +124,9 @@ public class OrderSystem {
             OrderStorage.writeOrderToFile(order, notes, num, address ,status);
             new ReportService().giveReportInfo(order.dateOfOrder,order.getOrderList(),bill(order)); //lujain
             //Order.numOfOrders++;
-            ReportService.customerOrdersNumber.merge(User.getNameOfCustomer(),1,Integer::sum);//lujain
+            ReportService.customerOrdersNumber.merge(User.getCurrentUser().getName(),1,Integer::sum);//lujain
             ReportHandle.save2Map(ReportService.customerOrdersNumber,"CustomerOrdersNumber.txt");//lujain
             ReportHandle.save2Map(ReportService.currentReport.mealsCounter,"ReportMealsCounter.txt");//lujain
-
             //ReportService.addMealsFromOrderToReport();//lujain
             List<Order> currentOrders = OrderStorage.loadOrdersFromFile();
             currentOrders.add(order);

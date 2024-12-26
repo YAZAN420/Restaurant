@@ -8,10 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 public class User {
-    private static String nameOfCustomer;//lujain
     private String name, email, password;
     private Role role;
-    private static User currentUser; //BACK
+    private static User currentUser; 
     private static List<User> users = new ArrayList<>();
     public User(String name, String email, String password, String confirmPassword, Role role) {
         if (!password.equals(confirmPassword)) {
@@ -134,8 +133,4 @@ public class User {
     public static void setUsers(List<User> users) {
         User.users = users;
     }
-
-    public static String getNameOfCustomer() {return nameOfCustomer;}
-
-    public static void setNameOfCustomer(String nameOfCustomer) {User.nameOfCustomer = nameOfCustomer;}
 }

@@ -5,7 +5,6 @@ import java.io.Serializable;
 
 public abstract class Order implements Serializable{
     String dateOfOrder ;//lujain
-
    private static List<Order> orders = new ArrayList<>();
    private final ArrayList<OrderStatusListener> listeners = new ArrayList<>();
     @Serial
@@ -59,19 +58,13 @@ public abstract class Order implements Serializable{
         throw new CustomException("The tip amount must be a positive number.");
     }
     public void setNotes(String notes) {this.notes = notes;}
-    public void setTime(int time) {
-        this.time = time;
-    }
+    public void setTime(int time) {this.time = time;}
     public ArrayList<Meal> getOrderList() {return orderList;}
     public double getTip() {return tip;}
     public int getOrderID() {return orderID;}
     public String getStatus() {return status;}
     public boolean isCancelable() {return isCancelable;}
     public String getNotes() {return notes;}
-    public int getTime() {
-        return time;
-    }
-    public ArrayList<OrderStatusListener> getListeners() {
-        return listeners;
-    }
+    public int getTime() {return time;}
+    public ArrayList<OrderStatusListener> getListeners() {return listeners;}
 }

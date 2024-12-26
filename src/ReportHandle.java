@@ -31,7 +31,9 @@ public class ReportHandle {
             System.err.println(e.getMessage());;
         }
     }
-    public static void load2Map(Map<String,Integer> map,String fileName) {//ReportService.customerOrdersNumber
+
+    public static void load2Map(Map<String, Integer> map, String fileName) {
+        //ReportService.customerOrdersNumber
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -40,8 +42,6 @@ public class ReportHandle {
             }
         } catch (FileNotFoundException e) {
             System.err.println("File not found: " + e.getMessage());
-            // Optionally create the file if needed
-            // new File("ReportMealsCounter.txt").createNewFile(); //????
         } catch (IOException e) {
             System.err.println("An error occurred while reading/writing files: " + e.getMessage());
             // Handle further

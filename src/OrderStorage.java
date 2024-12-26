@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-
 public class OrderStorage {
     public static void saveOrdersToFile(List<Order> orders) {
         String filePath = "orders.dat";
@@ -38,20 +37,16 @@ public class OrderStorage {
     }
     public static void clearFile() {
         try (FileOutputStream fos = new FileOutputStream("orders.dat", false)) {
-
         } catch (IOException e) {
             System.out.println("Error while clearing the file: " + e.getMessage());
         }
     }
     public static void writeOrderToFile(Order order, String notes, int tableNumber, String address, String status) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("FullOrder.txt", true))) {
-            writer.write("Order " + (order != null ? order.getOrderID() : 0));
-            writer.newLine();
+            writer.write("Order " + (order != null ? order.getOrderID() : 0 )+"\n");
             order.dateOfOrder = String.valueOf(LocalDate.now());//lujain
-            writer.write(order.dateOfOrder);//lujain
-            writer.newLine();//lujain
-            writer.write(User.getNameOfCustomer());
-            writer.newLine();
+            writer.write(order.dateOfOrder+"\n");//lujain
+            writer.write(User.getCurrentUser().getName()+"\n");
             if (order instanceof DineInOrder) {
                 writer.write("Order Type: DineIn Order\n");
                 writer.write("Table Number: " + tableNumber + "\n");
@@ -84,7 +79,6 @@ public class OrderStorage {
     public static void rewriteTxtFileFromObjects(String objectFilePath, String txtFilePath) {
         List<Order> orders = OrderStorage.loadOrdersFromFile();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(txtFilePath, false))) {
-
         } catch (IOException e) {
             System.out.println("Error while clearing the file: " + e.getMessage());
         }

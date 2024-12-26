@@ -10,7 +10,6 @@ public class Register {
         try {
             System.out.println("name,email,password,confirmPassword");
             this.name = s.next();
-            User.setNameOfCustomer(name); // lujain
             this.email = s.next();
             this.password = s.next();
             this.confirmPassword = s.next();
@@ -19,6 +18,7 @@ public class Register {
                 ser.registerUser(user);
                 ReportService.customerOrdersNumber.computeIfAbsent(this.name,k->0);//lujain
                 System.out.println("User registered successfully!");
+                User.setCurrentUser(user);
             } catch (IllegalArgumentException e) {
                 System.out.println("Error: " + e.getMessage());
             }
