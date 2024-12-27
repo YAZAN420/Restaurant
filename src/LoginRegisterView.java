@@ -59,10 +59,6 @@ public class LoginRegisterView {
                 notificationView.showNotification("Please Fill All The Fields.");
                 return;
             }
-            userText.setText("");
-            passText.setText("");
-            addPlaceholder(userText, "👤   Username");
-            addPlaceholder(passText, "🔒   Password");
             try {
                 new Login(userText.getText().trim(), passText.getText().trim());
                 loginPanel.setVisible(false);
@@ -81,9 +77,14 @@ public class LoginRegisterView {
                 notificationView.showNotification("Login successful!");
             } catch (IllegalArgumentException err) {
                 notificationView.showNotification(err.getMessage());
-            } 
+            } finally {
+                userText.setText("");
+                passText.setText("");
+                addPlaceholder(userText, "👤   Username");
+                addPlaceholder(passText, "🔒   Password");
+            }
         });
-                SwingUtilities.invokeLater(() -> {
+        SwingUtilities.invokeLater(() -> {
             userText.setFocusable(true);
             passText.setFocusable(true);
         });
@@ -158,14 +159,6 @@ public class LoginRegisterView {
                     notificationView.showNotification("Please Fill All The Fields.");
                     return;
                 }
-                regUserText.setText("");
-                regEmailText.setText("");
-                regPassText.setText("");
-                regConfirmPassText.setText("");
-                addPlaceholder(regUserText, "👤   Username");
-                addPlaceholder(regEmailText, "📧   Email");
-                addPlaceholder(regPassText, "🔒   Password");
-                addPlaceholder(regConfirmPassText, "🔒   Confirm Password");
                 try {
                     new Register(regUserText.getText(), regEmailText.getText(), regPassText.getText(), regConfirmPassText.getText());
                     notificationView.showNotification("Registration successful!");
@@ -184,6 +177,15 @@ public class LoginRegisterView {
                     });
                 } catch (IllegalArgumentException err) {
                     notificationView.showNotification(err.getMessage());
+                } finally {
+                    regUserText.setText("");
+                    regEmailText.setText("");
+                    regPassText.setText("");
+                    regConfirmPassText.setText("");
+                    addPlaceholder(regUserText, "👤   Username");
+                    addPlaceholder(regEmailText, "📧   Email");
+                    addPlaceholder(regPassText, "🔒   Password");
+                    addPlaceholder(regConfirmPassText, "🔒   Confirm Password");
                 }
             });
             registerPanel.add(registerButton);
