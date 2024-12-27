@@ -6,18 +6,17 @@ public class Login {
     Role role;
     Scanner s = new Scanner(System.in);
     Service ser = new Service();
-    public Login() {
+    public Login(String email,String password) {
         try {
-            System.out.println("email,password");
-            this.email = s.next();
-            this.password = s.next();
+            this.email = email;
+            this.password = password;
             try {
                 this.password=ser.hashPassword(this.password);
             } catch (NoSuchAlgorithmException e) {
                 e.printStackTrace();
             }
-            if (userExist(email, password)) {
-                User.setCurrentUser(new User(name, email, password, role));
+            if (userExist(this.email, this.password)) {
+                User.setCurrentUser(new User(name, this.email, this.password, role));
                 System.out.println("LoggedIn");
             } else {
                 System.out.println("Email or Password Wrong ");

@@ -19,33 +19,33 @@ public class Main {
         }
         System.out.println();
         User.setUsers(User.loadUsers(Service.users));
-        try (Scanner s = new Scanner(System.in)) {
-            try {
-                System.out.println("1-Login  2-Register");
-                int val = s.nextInt();
-                switch (val) {
-                    case 1:
-                        try {
-                            new Login();
-                            User.getCurrentUser().changeRole(User.findUserByName("Yazan232"), Role.EMPLOYEE);
-                        } catch (IllegalArgumentException e) {
-                            System.out.println(e.getMessage());
-                        }
-                        break;
-                    case 2:
-                        try {
-                            new Register();
-                        } catch (IllegalArgumentException e) {
-                            System.out.println(e.getMessage());
-                        }
-                        break;
-                    default:
-                        System.out.println("Invalid Input");
-                        break;
-                }
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-        }
+        // try (Scanner s = new Scanner(System.in)) {
+        //     try {
+        //         System.out.println("1-Login  2-Register");
+        //         int val = s.nextInt();
+        //         switch (val) {
+        //             case 1:
+        //                 try {
+        //                     new Login();
+        //                     User.getCurrentUser().changeRole(User.findUserByName("Yazan232"), Role.EMPLOYEE);
+        //                 } catch (IllegalArgumentException e) {
+        //                     System.out.println(e.getMessage());
+        //                 }
+        //                 break;
+        //             case 2:
+        //                 try {
+        //                     new Register();
+        //                 } catch (IllegalArgumentException e) {
+        //                     System.out.println(e.getMessage());
+        //                 }
+        //                 break;
+        //             default:
+        //                 System.out.println("Invalid Input");
+        //                 break;
+        //         }
+        //     } catch (Exception e) {
+        //         System.out.println(e);
+        //     }
+        // }
     }
 }

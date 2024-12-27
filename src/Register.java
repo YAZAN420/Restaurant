@@ -1,18 +1,18 @@
 import java.io.*;
 import java.util.*;
 public class Register {
+    @SuppressWarnings("unused")
     private String name, email, password, confirmPassword;
     Service ser = new Service();
     File users = new File("users.txt");
     FileWriter fw;
     Scanner s = new Scanner(System.in);
-    Register() {
+    Register(String name,String email,String password,String confirmPassword) {
         try {
-            System.out.println("name,email,password,confirmPassword");
-            this.name = s.next();
-            this.email = s.next();
-            this.password = s.next();
-            this.confirmPassword = s.next();
+            this.name = name;
+            this.email = email;
+            this.password = password;
+            this.confirmPassword = confirmPassword;
             try {
                 User user = new User(name, email, password, confirmPassword, Role.USER);
                 ser.registerUser(user);
