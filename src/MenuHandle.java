@@ -9,11 +9,11 @@ import java.util.Scanner;
 import java.util.concurrent.ConcurrentHashMap;
 public class MenuHandle {
     private static final File menuFile = new File("menuFile.txt");
-    public static Map<String,List<Meal>> loadMenu()  {
+    public static Map<String,List<Meal>> loadMenu()  { //loulia
         if (!menuFile.exists() || menuFile.length() == 0) return new ConcurrentHashMap<>();
         Map<String,List<Meal>> menu = new ConcurrentHashMap<>();
         try (Scanner fileRead = new Scanner(menuFile)) {
-            String category = null , mealName , ingredients;
+            String category = null , mealName , ingredients,imagePath;
             Double mealPrice;
             int minutesNeeded;
             while (fileRead.hasNextLine()) {
@@ -22,13 +22,14 @@ public class MenuHandle {
                     category= line.substring(2).trim();
                     menu.computeIfAbsent(category,k ->new ArrayList<>());}
                 else if(line.startsWith("=")){
-                    String[] menuParts = line.split(":",4);
-                    if (menuParts.length == 4) {
+                    String[] menuParts = line.split(":",5);
+                    if (menuParts.length == 5) {
                         mealName = menuParts[0].substring(2).trim();
                         ingredients = menuParts[1].trim();
                         mealPrice = Double.parseDouble(menuParts[2].trim());
                         minutesNeeded = Integer.parseInt(menuParts[3].trim());
-                        menu.get(category).add(new Meal(mealName,ingredients,mealPrice,minutesNeeded));
+                        imagePath = menuParts[4].trim();
+                        menu.get(category).add(new Meal(mealName,category,ingredients,mealPrice,minutesNeeded,imagePath));
                     }}
             }}
         catch (FileNotFoundException ex) {

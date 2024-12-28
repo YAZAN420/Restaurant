@@ -4,12 +4,13 @@ import java.util.List;
 import java.io.Serializable;
 
 public abstract class Order implements Serializable{
-    String dateOfOrder ;//lujain
+
    private static List<Order> orders = new ArrayList<>();
    private final ArrayList<OrderStatusListener> listeners = new ArrayList<>();
     @Serial
     private static final long serialVersionUID = 1L;
     private ArrayList<Meal> orderList ;
+    String dateOfOrder ;
     private double tip;
     private final int orderID;
     private String status;

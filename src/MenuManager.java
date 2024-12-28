@@ -13,7 +13,8 @@ public class MenuManager {
         menu.get(inCategory).remove(meal);
         MenuHandle.saveMenu(menu);
     }
-    public void addToMenu() throws IOException {
+
+    public void addToMenu() throws IOException { // loulia
         User.checkPermission(User.getCurrentUser().getRole(), Permission.ADD_MEAL);
         System.out.println("category:");
         String category = scan.nextLine();
@@ -34,7 +35,9 @@ public class MenuManager {
             if ((minutesNeeded = scan.nextInt()) < 0)
                 throw new IllegalArgumentException("minutes cant be <0");
             scan.nextLine();
-            menu.computeIfAbsent(category, k -> new ArrayList<>()).add(new Meal(mealName, ingredients, mealPrice,minutesNeeded));
+            System.out.println("image path: ");
+            String imagePath = scan.nextLine();
+            menu.computeIfAbsent(category, k -> new ArrayList<>()).add(new Meal(mealName,category, ingredients, mealPrice,minutesNeeded,imagePath));
             MenuHandle.saveMenu(menu);
         } catch (IllegalArgumentException e) {
             System.err.println("error: "+ e.getMessage());
@@ -91,7 +94,6 @@ public class MenuManager {
         meal.setMinutesNeeded(min);
         MenuHandle.saveMenu(menu);
     }
-
     private Meal findMeal(String category, String mealName) {
         category = formatCategory(category);
         List<Meal> meals = menu.get(category);
