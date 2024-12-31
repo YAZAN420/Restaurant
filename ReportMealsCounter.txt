@@ -1,4 +1,4 @@
-Margherita pizza=9
+Margherita pizza=1
 Caesar salad=0
-Iced mocha=3
+Iced mocha=0
 Shrimp scampi=0

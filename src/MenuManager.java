@@ -13,8 +13,7 @@ public class MenuManager {
         menu.get(inCategory).remove(meal);
         MenuHandle.saveMenu(menu);
     }
-
-    public void addToMenu() throws IOException { // loulia
+    public void addToMenu() throws IOException { 
         User.checkPermission(User.getCurrentUser().getRole(), Permission.ADD_MEAL);
         System.out.println("category:");
         String category = scan.nextLine();

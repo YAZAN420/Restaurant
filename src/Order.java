@@ -5,8 +5,8 @@ import java.io.Serializable;
 
 public abstract class Order implements Serializable{
 
-   private static List<Order> orders = new ArrayList<>();
-   private final ArrayList<OrderStatusListener> listeners = new ArrayList<>();
+    private static List<Order> orders = new ArrayList<>();
+    private final ArrayList<OrderStatusListener> listeners = new ArrayList<>();
     @Serial
     private static final long serialVersionUID = 1L;
     private ArrayList<Meal> orderList ;
@@ -19,9 +19,17 @@ public abstract class Order implements Serializable{
     private int time;
     static int counter=1;
     private transient OrderTimer orderTimer;
-    public Order(ArrayList<Meal> orderList, double tip, int orderID, String status, boolean isCancelable, String notes, int time) throws CustomException {
-        setOrderList(orderList);
-        setTip(tip);
+    private transient NotificationView notificationView;
+    public Order(ArrayList<Meal> orderList, double tip, int orderID, String status, boolean isCancelable, String notes, int time, NotificationView notificationView)  {
+        this.notificationView = notificationView;
+        try {
+            setOrderList(orderList);
+            setTip(tip);
+        } catch (CustomException e) {
+            if (notificationView != null) {
+                notificationView.showNotification(e.getMessage());
+            }
+        }
         this.orderID = orderID;
         this.status = status;
         this.isCancelable = isCancelable;
@@ -48,15 +56,15 @@ public abstract class Order implements Serializable{
     }
     public void setOrderList(ArrayList<Meal> orderList) throws CustomException {
         if(orderList != null && !orderList.isEmpty())
-        this.orderList = orderList;
+            this.orderList = orderList;
         else
-        throw new CustomException("The order list is invalid or empty.");
+            throw new CustomException("The order list is invalid or empty.");
     }
     public void setTip(double tip) throws CustomException {
         if(tip>=0)
-        this.tip = tip;
+            this.tip = tip;
         else
-        throw new CustomException("The tip amount must be a positive number.");
+            throw new CustomException("The tip amount must be a positive number.");
     }
     public void setNotes(String notes) {this.notes = notes;}
     public void setTime(int time) {this.time = time;}

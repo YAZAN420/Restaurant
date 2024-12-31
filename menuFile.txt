@@ -19,3 +19,7 @@
 = Chocolate lava cake: Rich chocolate cake with a gooey molten center.: 18.0:3:photos\\Chocolate lava cake.jpg
 = Banoffee pie: A pie made with bananas, caramel, and whipped cream on a biscuit crust.: 18.5:4:photos\\Banoffee pie.jpg
 = Ice cream sundae: Ice cream topped with chocolate syrup, whipped cream, and a cherry.: 13.2:2:photos\\Ice cream sundae.jpg
+* Soups
+= Miso Soup: Miso paste is dissolved in warm broth and combined with cubed tofu, thin slices of seaweed, and chopped scallions. This traditional Japanese soup is served warm, offering a light and savory start to a meal.:3.0:2:photos\\Miso Soup.jpg
+* Pasta
+= Baked Ziti: Ziti pasta is mixed with a rich marinara sauce and layered with creamy ricotta and shredded mozzarella cheese. The dish is baked until the cheese melts and forms a golden, bubbly crust. Serve hot, straight from the oven.:5.0:3:photos\\Baked Ziti2.jpg

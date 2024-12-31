@@ -8,8 +8,8 @@ public class DeliveryOrder extends Order implements Serializable{
     private static final long serialVersionUID = 1L;
     String address;
 
-    public DeliveryOrder(ArrayList<Meal> orderList, double tip, int orderID, String status, boolean isCancelable, String address, String notes, int time) throws CustomException {
-        super(orderList, tip, orderID, status, isCancelable, notes, time);
+    public DeliveryOrder(ArrayList<Meal> orderList, double tip, int orderID, String status, boolean isCancelable, String address, String notes, int time, NotificationView notificationView) {
+        super(orderList, tip, orderID, status, isCancelable, notes, time, notificationView);
         this.address = address;
     }
 

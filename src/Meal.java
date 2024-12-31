@@ -1,6 +1,3 @@
-import javax.swing.*;
-import javax.swing.border.LineBorder;
-import java.awt.*;
 import java.io.Serial;
 import java.io.Serializable;
 
@@ -12,9 +9,11 @@ public class Meal implements Serializable {
     private String ingredients;
     private double mealPrice;
     private int minutesNeeded;
-    private String imagePath; //loulia
+    private String imagePath; 
     public Meal() {}
-    public Meal(String mealName, String category, String ingredients, double mealPrice, int minutesNeeded, String imagePath) { //loulia
+
+    public Meal(String mealName, String category, String ingredients, double mealPrice, int minutesNeeded,
+            String imagePath) {
         this.mealName = mealName;
         this.category = category;
         this.ingredients = ingredients;

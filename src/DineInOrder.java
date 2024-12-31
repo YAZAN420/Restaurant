@@ -7,10 +7,15 @@ public class DineInOrder extends Order implements Serializable{
     @Serial
     private static final long serialVersionUID = 1L;
     int tableNumber;
-
-    public DineInOrder(ArrayList<Meal> orderList, double tip, int orderID, String status, boolean isCancelable, int tableNumber, String notes, int time) throws CustomException {
-        super(orderList, tip, orderID, status, isCancelable, notes, time);
-        setTableNumber(tableNumber);
+    public DineInOrder(ArrayList<Meal> orderList, double tip, int orderID, String status, boolean isCancelable, int tableNumber, String notes, int time, NotificationView notificationView) {
+        super(orderList, tip, orderID, status, isCancelable, notes, time, notificationView);
+        try {
+            setTableNumber(tableNumber);
+        } catch (CustomException e) {
+            if (notificationView != null) {
+                notificationView.showNotification(e.getMessage());
+            }
+        }
     }
     public void setTableNumber(int tableNumber) throws CustomException {
         if (tableNumber <= 0 || tableNumber > 150)
