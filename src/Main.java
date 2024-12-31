@@ -9,5 +9,6 @@ public class Main {
         ReportHandle.load2Map(Report.mealsCounter, "ReportMealsCounter.txt");
         Order.setOrders(OrderStorage.loadOrdersFromFile());
         new LoginRegisterView();
+        //comment :)
     }
 }
