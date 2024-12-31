@@ -11,22 +11,31 @@ public class CartView {
         cartPanel.setBackground(new Color(253, 245, 230));
         JLabel titleLabel = new JLabel("Your Cart");
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        titleLabel.setFont(new Font("Serif", Font.BOLD, 24));
+        titleLabel.setFont(new Font("Serif", Font.BOLD, 38)); //24
         titleLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         cartPanel.add(titleLabel, BorderLayout.NORTH);
         cartListModel = new DefaultListModel<>();
         cartList = new JList<>(cartListModel);
-        cartList.setFont(new Font("Serif", Font.PLAIN, 18));
+        cartList.setFont(new Font("Serif", Font.PLAIN, 32)); //18
         cartList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         cartList.setBackground(new Color(253, 245, 230));
         JScrollPane scrollPane = new JScrollPane(cartList);
         scrollPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         cartPanel.add(scrollPane, BorderLayout.CENTER);
         scrollPane.setBackground(new Color(238, 121, 50));
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 40)); //10 10
         buttonPanel.setOpaque(false);
-        JButton backButton = new JButton("🔙");
-        backButton.setPreferredSize(new Dimension(50, 25));
+        JButton backButton = new JButton();
+
+        backButton.setPreferredSize(new Dimension(100, 60)); //50 25
+        ImageIcon backIcon = new ImageIcon("photos\\turn-back.png");
+        Image img = backIcon.getImage();
+        Image scaledImg = img.getScaledInstance(50, 40, Image.SCALE_SMOOTH);
+        backIcon = new ImageIcon(scaledImg);
+        backButton.setIcon(backIcon);
+
+
+
         backButton.setBackground(new Color(211, 211, 211));
         backButton.addActionListener(e -> {
             MainPanel.mainContent.removeAll();
@@ -35,7 +44,7 @@ public class CartView {
             MainPanel.sideCategoryPanel.getSideMenu().setVisible(true);
         });
         JButton totalButton = new JButton("Show Total");
-        totalButton.setPreferredSize(new Dimension(150, 25));
+        totalButton.setPreferredSize(new Dimension(150, 60)); //150 25
         totalButton.setBackground(new Color(211, 211, 211));
         totalButton.setFont(new Font("Serif", Font.BOLD, 16));
         totalButton.addActionListener(e -> {
@@ -45,8 +54,16 @@ public class CartView {
             }
             JOptionPane.showMessageDialog(cartPanel, "Total: $" + total, "Cart Total", JOptionPane.INFORMATION_MESSAGE);
         });
-        JButton DoneButton = new JButton("✔");
-        DoneButton.setPreferredSize(new Dimension(50, 25));
+        JButton DoneButton = new JButton();
+
+        ImageIcon DoneIcon = new ImageIcon("photos\\check-mark.png");
+        Image img2 = DoneIcon.getImage();
+        Image scaledImg2 = img2.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+        DoneIcon = new ImageIcon(scaledImg2);
+        DoneButton.setIcon(DoneIcon);
+
+
+        DoneButton.setPreferredSize(new Dimension(100, 60)); //50 25
         DoneButton.setBackground(new Color(211, 211, 211));
         DoneButton.addActionListener(e -> {
             if(!cartListModel.isEmpty()){
@@ -64,7 +81,7 @@ public class CartView {
     }
     public static void updateCartView(ArrayList<Meal> cart) {
         cartListModel.clear();
-        for (Meal meal : cart) {
+        for (Meal meal : MealPanel.cart) {
             cartListModel.addElement(meal.getMealName());
         }
     }

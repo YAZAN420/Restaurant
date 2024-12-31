@@ -28,7 +28,6 @@ public class CustomerOrderDialogController {
     private void handleNotesCheckBox() {
         view.getNotesTextArea().setEnabled(view.getNotesCheckBox().isSelected());
     }
-    @SuppressWarnings("unused")
     private void handleSubmit() {
         StringBuilder errorMessages = new StringBuilder();
         String orderType = (String) view.getOrderTypeComboBox().getSelectedItem();
@@ -39,7 +38,7 @@ public class CustomerOrderDialogController {
             errorMessages.append("Please select an order type.\n");
         }
 
-        if (tip == null || tip.isEmpty()) {
+        if (tip == null || tip.isEmpty() || Double.parseDouble(tip)<0) {
             errorMessages.append("Please enter a tip amount.\n");
         }
 
@@ -50,8 +49,8 @@ public class CustomerOrderDialogController {
             }
         } else {
             String tableNumber = view.getTableNumberField().getText();
-            if (tableNumber == null || tableNumber.isEmpty()) {
-                errorMessages.append("Please enter a table number.\n");
+            if (tableNumber == null || tableNumber.isEmpty() || Integer.parseInt(tableNumber)<1 || Integer.parseInt(tableNumber)>100) {
+                errorMessages.append("Please enter a table number 1 -> 100.\n");
             }
         }
 

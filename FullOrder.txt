@@ -1,0 +1,13 @@
+Order 1
+2024-12-31
+yazanmahfooz9
+Order Type: DineIn Order
+Table Number: 3
+Meals required: 1
+Order Details:
+Margherita pizza: 18.0$
+Notes: aaaaaa
+Tip: 22.0
+Total Price: 40.0$
+Order Status: Preparing
+____________________

@@ -13,7 +13,7 @@ public class MealPanel extends JPanel {
         setPreferredSize(new Dimension(200,100));
         setLayout(new BorderLayout());
         String Meal_path= new MenuManager().callfindMeal(MenuContentJPanel.selectedCategory,meal.getMealName()).getImagePath();
-        image = new ImageIcon(Meal_path).getImage().getScaledInstance(280,230,Image.SCALE_SMOOTH);;
+        image = new ImageIcon(Meal_path).getImage().getScaledInstance(280,320,Image.SCALE_SMOOTH); //280 230
         JLabel imge = new JLabel( new ImageIcon(image),SwingConstants.CENTER);
         JLabel text  = new JLabel(meal.getMealName(),SwingConstants.CENTER);
         text.setFont(new Font("Georgia", Font.BOLD, 16));
@@ -27,7 +27,7 @@ public class MealPanel extends JPanel {
         b.addActionListener(e -> {
             MainPanel.mainContent.removeAll();
             MainPanel.sideCategoryPanel.getSideMenu().setVisible(false);
-            MealDetailsController con = new MealDetailsController(meal, cart);
+            MealDetailsController con = new MealDetailsController(meal);
             MainPanel.mainContent.add(con.getView().getMainPanel(), BorderLayout.CENTER);
         });
         setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 5)); 

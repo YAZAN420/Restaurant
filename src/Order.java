@@ -17,8 +17,9 @@ public abstract class Order implements Serializable{
     private boolean isCancelable;
     private String notes;
     private int time;
-    static int counter=1;
+    static int counter;
     private transient OrderTimer orderTimer;
+    @SuppressWarnings("unused")
     private transient NotificationView notificationView;
     public Order(ArrayList<Meal> orderList, double tip, int orderID, String status, boolean isCancelable, String notes, int time, NotificationView notificationView)  {
         this.notificationView = notificationView;
@@ -31,6 +32,10 @@ public abstract class Order implements Serializable{
             }
         }
         this.orderID = orderID;
+        Notification notificationService = new Notification();
+        OrderSystem.addListener(this.getListeners(), notificationService);
+        OrderStatusFileUpdater fileUpdater = new OrderStatusFileUpdater();
+        OrderSystem.addListener(this.getListeners(), fileUpdater);
         this.status = status;
         this.isCancelable = isCancelable;
         this.notes = notes;
@@ -70,10 +75,14 @@ public abstract class Order implements Serializable{
     public void setTime(int time) {this.time = time;}
     public ArrayList<Meal> getOrderList() {return orderList;}
     public double getTip() {return tip;}
+    public static void setOrders(List<Order> orders) {Order.orders = orders;}
+    public void setDateOfOrder(String dateOfOrder) {this.dateOfOrder = dateOfOrder;}
     public int getOrderID() {return orderID;}
     public String getStatus() {return status;}
     public boolean isCancelable() {return isCancelable;}
     public String getNotes() {return notes;}
     public int getTime() {return time;}
     public ArrayList<OrderStatusListener> getListeners() {return listeners;}
+    public static List<Order> getOrders() {return orders;}
+    public String getDateOfOrder() {return dateOfOrder;}
 }

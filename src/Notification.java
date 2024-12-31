@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.io.Serial;
 import java.io.Serializable;
 
@@ -8,5 +9,8 @@ public class Notification implements OrderStatusListener, Serializable {
     @Override
     public void onStatusChanged(Order order, String newStatus) {
         notificationView.showNotification("Notification: Order " + order.getOrderID() +" status: " + newStatus);
+        JOptionPane.showMessageDialog(null ,"Notification: Order " + order.getOrderID() +" status: " + newStatus ,"Notification", JOptionPane.INFORMATION_MESSAGE);
     }
 }
+
+

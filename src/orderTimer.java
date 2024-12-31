@@ -15,14 +15,14 @@ class OrderTimer {
                 order.setCancelable(false);
                 order.setStatus("Prepared");
             }
-        }, timeInSeconds * 1000L ); //BACK
+        }, timeInSeconds * 1000L ); //BACK 
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 order.setCancelable(false);
                 order.setStatus("Delivered");
             }
-        }, (timeInSeconds * 1000L) + 10000); //BACK
+        }, (timeInSeconds * 1000L) + 10000);
     }
     public void cancelOrder() {
         timer.cancel();

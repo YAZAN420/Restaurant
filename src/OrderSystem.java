@@ -16,41 +16,31 @@ public class OrderSystem {
             listener.onStatusChanged(order, order.getStatus());
         }
     }
-
+    @SuppressWarnings("static-access")
     public static void createOrder(ArrayList<Meal> meals, String choice, double tip, String notes, String address, int tableNumber, NotificationView notificationView) {
 
+        ArrayList<Meal> mealCopy = new ArrayList<>(meals);
         int preparationTime = 0;
         for (Meal meal : meals) {
             preparationTime += meal.getMinutesNeeded() * 60;
         }
-
         Order order = null;
         String status = "Preparing";
         if (choice.equalsIgnoreCase("Delivery")) {
-            order = new DeliveryOrder(meals, tip, Order.counter, status, true, address, notes, preparationTime, notificationView);
+            order = new DeliveryOrder(mealCopy, tip, Order.counter, status, true, address, notes, preparationTime, notificationView);
 
         } else {
-            order = new DineInOrder(meals, tip, Order.counter, status, true, tableNumber, notes, preparationTime, notificationView);
+            order = new DineInOrder(mealCopy, tip, Order.counter, status, true, tableNumber, notes, preparationTime, notificationView);
         }
-
-        Notification notificationService = new Notification();
-        addListener(order.getListeners(), notificationService);
-
-        OrderStatusFileUpdater fileUpdater = new OrderStatusFileUpdater();
-        addListener(order.getListeners(), fileUpdater);
-
         OrderStorage.writeOrderToFile(order, notes, tableNumber, address, status);
         new ReportService().giveReportInfo(order.dateOfOrder, order.getOrderList(), bill(order));
         ReportService.customerOrdersNumber.merge(User.getCurrentUser().getName(), 1, Integer::sum);
         ReportHandle.save2Map(ReportService.customerOrdersNumber, "CustomerOrdersNumber.txt");
         ReportHandle.save2Map(ReportService.currentReport.mealsCounter, "ReportMealsCounter.txt");
-
         List<Order> currentOrders = OrderStorage.loadOrdersFromFile();
         currentOrders.add(order);
         OrderStorage.saveOrdersToFile(currentOrders);
-
         CartView.getCartListModel().clear();
         MealPanel.cart.clear();
     }
-
 }

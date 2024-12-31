@@ -8,9 +8,8 @@ public class MealDetailsController {
     private MealDetailsView view;
     private Meal meal;
     private ArrayList<Meal> cart;
-    public MealDetailsController(Meal meal, ArrayList<Meal> cart) {
+    public MealDetailsController(Meal meal) {
         this.meal = meal;
-        this.cart = cart;
         view = new MealDetailsView(
                 meal,
                 this::handleAddMeal,
@@ -19,12 +18,12 @@ public class MealDetailsController {
         );
     }
     private void handleAddMeal(ActionEvent e) {
-        cart.add(meal);
+        MealPanel.cart.add(meal);
         CartView.updateCartView(cart);
     }
     private void handleDeleteMeal(ActionEvent e) {
-        if (cart.contains(meal)) {
-            cart.remove(meal);
+        if (MealPanel.cart.contains(meal)) {
+            MealPanel.cart.remove(meal);
             CartView.updateCartView(cart);
         } else {
             JOptionPane.showMessageDialog(

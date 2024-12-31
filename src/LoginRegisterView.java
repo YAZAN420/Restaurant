@@ -1,17 +1,20 @@
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
 import java.awt.*;
-public class LoginRegisterView {
+public class LoginRegisterView extends JFrame{
     public static NotificationView notificationView;
     public static JFrame frame;
     public static MainPanel mainPanel;
     @SuppressWarnings("deprecation" )
-    public static void main(String[] args) {
-        MenuManager.setMenu(MenuHandle.loadMenu());
-        ReportHandle.loadReport();
-        ReportHandle.load2Map(ReportService.customerOrdersNumber, "CustomerOrdersNumber.txt");
-        ReportHandle.load2Map(Report.mealsCounter, "ReportMealsCounter.txt");
-        OrderStorage.loadOrdersFromFile();
+    LoginRegisterView(){
+       
+        if(!Order.getOrders().isEmpty()){
+            Order.counter = Order.getOrders().get(Order.getOrders().size() - 1).getOrderID()+ 1;
+        }
+        else {
+            Order.counter = 1;
+        }
+
         frame = new JFrame();
         frame.setSize(1920, 1080);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

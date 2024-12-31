@@ -53,13 +53,36 @@ public class MealDetailsView {
     private JPanel createButtonPanel(ActionListener addAction, ActionListener deleteAction, ActionListener backAction) {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
         panel.setOpaque(false);
-        JButton backButton = new JButton("🔙");
-        backButton.setPreferredSize(new Dimension(50, 25)); //
+        JButton backButton = new JButton();
+
+        ImageIcon backIcon = new ImageIcon("photos\\turn-back.png");
+        Image img = backIcon.getImage();
+        Image scaledImg = img.getScaledInstance(50, 40, Image.SCALE_SMOOTH);
+        backIcon = new ImageIcon(scaledImg);
+        backButton.setIcon(backIcon);
+
+        backButton.setPreferredSize(new Dimension(100, 60)); //50 25
         backButton.setBackground(new Color(211, 211, 211));
         backButton.addActionListener(backAction);
         panel.add(backButton);
-        addButton = new JButton("➕");
-        deleteButton = new JButton("➖");
+        addButton = new JButton();
+        deleteButton = new JButton();
+
+        ImageIcon addIcon = new ImageIcon("photos\\plus+.png");
+        Image img2 = addIcon.getImage();
+        Image scaledImg2 = img2.getScaledInstance(40, 35, Image.SCALE_SMOOTH);
+        addIcon = new ImageIcon(scaledImg2);
+        addButton.setIcon(addIcon);
+
+        ImageIcon deleteIcon = new ImageIcon("photos\\minimize-sign.png");
+        Image img3 = deleteIcon.getImage();
+        Image scaledImg3 = img3.getScaledInstance(40, 35, Image.SCALE_SMOOTH);
+        deleteIcon = new ImageIcon(scaledImg3);
+        deleteButton.setIcon(deleteIcon);
+
+
+        addButton.setPreferredSize(new Dimension(100, 60));
+        deleteButton.setPreferredSize(new Dimension(100, 60));
         addButton.setBackground(new Color(211, 211, 211));
         deleteButton.setBackground(new Color(211, 211, 211));
         addButton.addActionListener(addAction);

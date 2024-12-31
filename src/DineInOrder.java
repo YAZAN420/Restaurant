@@ -18,7 +18,7 @@ public class DineInOrder extends Order implements Serializable{
         }
     }
     public void setTableNumber(int tableNumber) throws CustomException {
-        if (tableNumber <= 0 || tableNumber > 150)
+        if (tableNumber <= 0 || tableNumber > 100)
             throw new CustomException("Error: Table number is wrong, please enter number between 1 to 150 ");
         else
             this.tableNumber = tableNumber;
