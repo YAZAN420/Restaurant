@@ -6,7 +6,7 @@ public class Login {
     private static User currentUser;
     Scanner s = new Scanner(System.in);
     Service ser = new Service();
-
+//
     public Login() {
         try {
             System.out.println("email,password");
