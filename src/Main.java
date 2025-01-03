@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Main {
     static Scanner scan = new Scanner(System.in);
     public static ArrayList<Meal> cart = new ArrayList<>();
+    //
     @SuppressWarnings("unused")
     public static void main(String[] args) throws IOException {
         MenuManager.setMenu(MenuHandle.loadMenu());//imp
