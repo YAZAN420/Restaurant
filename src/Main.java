@@ -21,8 +21,8 @@ public class Main {
             Thread.sleep(12000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
-
+        }}}}}}}}}}}
+}
 
         Order secondOrder = null;
         try {
