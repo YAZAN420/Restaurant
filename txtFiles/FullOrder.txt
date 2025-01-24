@@ -1,0 +1,49 @@
+Order 1
+2025-01-21
+YazanMahfooz
+Order Type: DineIn Order
+Table Number: 8
+Meals required: 1
+Order Details:
+Margherita pizza: 19.98$
+Tip: 7.0
+Total Price: 26.98$
+Order Status: Delivered
+____________________
+Order 2
+2025-01-21
+Emile
+Order Type: DineIn Order
+Table Number: 4
+Meals required: 1
+Order Details:
+Iced mocha: 6.5$
+Tip: 4.0
+Total Price: 10.5$
+Order Status: Delivered
+____________________
+Order 3
+2025-01-21
+Colette
+Order Type: Delivery Order
+Address: paris
+Meals required: 1
+Order Details:
+Iced mocha: 6.5$
+Notes: thanks
+Tip: 3.0
+Total Price: 9.5$
+Order Status: Delivered
+____________________
+Order 4
+2025-01-21
+Colette
+Order Type: DineIn Order
+Table Number: 34
+Meals required: 1
+Order Details:
+Iced mocha: 6.5$
+Tip: 3.0
+Total Price: 9.5$
+Order Status: Delivered
+____________________

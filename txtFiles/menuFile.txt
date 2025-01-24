@@ -1,0 +1,75 @@
+* Main courses
+= Ratatouille: A traditional French Provençal stewed vegetable dish made with zucchini, eggplant, tomatoes, bell peppers, and herbs, served with crusty bread.: 18.0:5:photos\Ratatouille.jpg
+= Tofu teriyaki bowl: Marinated tofu stir-fried with teriyaki sauce and served over steamed rice.: 18.0:7:photos\Tofu teriyaki bowl.jpg
+= Grilled salmon: Fresh salmon fillet grilled and topped with a zesty lemon butter sauce.: 20.8:6:photos\Grilled salmon with lemon butter.jpg
+= Chicken parmesan: Breaded chicken breast baked with marinara sauce and melted mozzarella.: 21.0:5:photos\Chicken parmesan.jpg
+= Shrimp scampi: Shrimp sautéed with garlic, butter, and white wine, tossed with linguine.: 24.2:5:photos\Shrimp scampi.jpg
+= Beef bourguignon: Slow-cooked beef in red wine with mushrooms, onions, and carrots, served with mashed potatoes.: 26.5:6:photos\Beef bourguignon.jpg
+= Lamb chops: Grilled lamb chops marinated in rosemary and garlic, served with roasted vegetables.: 30.0:7:photos\Lamb chops.jpg
+= Eggplant parmesan: Breaded eggplant slices layered with marinara sauce, mozzarella, and Parmesan cheese, then baked.: 19.0:5:photos\Eggplant parmesan.jpg
+= Duck confit: Tender duck leg cooked slowly in its own fat, served with roasted potatoes and a side salad.: 28.0:6:photos\Duck confit.jpg
+= Stuffed bell peppers: Bell peppers filled with a mixture of rice, ground beef, and spices, baked to perfection.: 18.5:4:photos\Stuffed bell peppers.jpg
+= Vegan buddha bowl: A colorful bowl of quinoa, roasted chickpeas, sweet potatoes, avocado, and fresh greens, drizzled with tahini dressing.: 17.5:6:photos\Vegan buddha bowl.jpg
+* Pizza
+= Margherita pizza: Classic pizza with tomato sauce, mozzarella, and pepperoni slices.: 19.98:4:photos\Margherita pizza.jpg
+= Vegetarian supreme pizza: Tomato sauce topped with mushrooms, bell peppers, onions, olives, and spinach.: 17.0:4:photos\Vegetarian supreme pizza.jpg
+= Pepperoni pizza: Classic pizza with tomato sauce, mozzarella, and pepperoni slices.: 19.98:4:photos\Pepperoni pizza.jpg
+= Truffle mushroom pizza: Creamy truffle sauce base with mozzarella, wild mushrooms, and a drizzle of truffle oil.: 22.0:5:photos\Truffle mushroom pizza.jpg
+= Buffalo chicken pizza: Ranch or blue cheese base, topped with spicy buffalo chicken, mozzarella, and a drizzle of buffalo sauce.: 21.5:4:photos\Buffalo chicken pizza.jpg
+= Hawaiian pizza: Tomato sauce, mozzarella cheese, ham, and pineapple chunks.: 18.5:4:photos\Hawaiian pizza.jpg
+= Spicy sausage pizza: Tomato sauce with mozzarella, spicy Italian sausage, jalapeños, and red onions.: 20.5:4:photos\Spicy sausage pizza.jpg
+= Bbq chicken pizza: BBQ sauce, grilled chicken, red onions, mozzarella, and cilantro.: 19.5:4:photos\Bbq chicken pizza.jpg
+= Four cheese pizza: Mozzarella, Parmesan, Gorgonzola, and Fontina cheese on a thin crust.: 21.0:4:photos\Four cheese pizza.jpg
+* Salads
+= Caesar salad: Crisp romaine lettuce with Caesar dressing, Parmesan, croutons, and optional grilled chicken.: 7.0:2:photos\Caesar salad.jpg
+= Greek salad: A fresh mix of tomatoes, cucumbers, olives, feta cheese, red onions, and olive oil.: 7.0:2:photos\Greek salad.jpg
+= Asian slaw salad: Shredded cabbage, carrots, and green onions tossed with sesame ginger dressing.: 6.0:2:photos\Asian slaw salad.jpg
+= Nicoise salad: Tuna, hard-boiled eggs, green beans, potatoes, olives, and tomatoes served over greens.: 8.5:2:photos\Nicoise salad.jpg
+= Southwest salad: Romaine lettuce topped with black beans, corn, diced tomatoes, avocado slices, shredded cheese, and crispy tortilla strips.: 7.5:2:photos\Southwest salad.jpg
+= Beetroot & goat cheese: Roasted beetroot slices on a bed of greens with crumbled goat cheese, candied walnuts, and honey vinaigrette.: 8.5:2:photos\Beetroot & goat cheese.jpg
+= Lentil salad: Warm lentils mixed with roasted carrots, zucchini, and red peppers, topped with a tahini dressing.: 7.0:2:photos\Lentil & roasted vegetable salad.jpg
+= Pomegranate quinoa: Quinoa tossed with pomegranate seeds, fresh mint, cucumber, and lemon dressing.: 8.2:2:photos\Pomegranate quinoa.jpg
+= Thai peanut salad: Shredded cabbage, carrots, red peppers, and edamame tossed with a creamy peanut dressing and topped with crushed peanuts.: 7.5:2:photos\Thai peanut salad.jpg
+= Strawberry salad: Fresh spinach leaves tossed with sliced strawberries, toasted almonds, and a balsamic vinaigrette.: 7.8:2:photos\Strawberry salad.jpg
+* Soups
+= Miso soup: Miso paste is dissolved in warm broth and combined with cubed tofu, thin slices of seaweed, and chopped scallions. This traditional Japanese soup is served warm, offering a light and savory start to a meal.: 3.0:2:photos\Miso soup.jpg
+= French onion soup: Caramelized onions in a rich beef broth, topped with a slice of toasted baguette and melted Gruyère cheese.: 7.0:3:photos\French onion soup.jpg
+= Minestrone soup: A hearty Italian soup with pasta, beans, zucchini, tomatoes, and a blend of fresh herbs.: 6.5:3:photos\Minestrone soup.jpg
+= Chicken mushroom: Tender chicken pieces and mushrooms in a creamy, savory broth.: 8.0:3:photos\Chicken mushroom.jpg
+= Spicy lentil soup: Red lentils cooked with spices, garlic, ginger, and a touch of lime for a bold and warming flavor.: 5.5:2:photos\Spicy lentil soup.jpg
+= Corn chowder: Sweet corn kernels in a creamy broth with potatoes, celery, and a hint of thyme.: 6.0:2:photos\Corn chowder.jpg
+= Tom yum soup: Thai soup with shrimp, lemongrass, lime leaves, chili paste, and mushrooms in a tangy broth.: 6.8:3:photos\Tom yum soup.jpg
+= Potato leek soup: Creamy soup made with tender potatoes and sautéed leeks, blended until smooth.: 5.5:2:photos\Potato leek soup.jpg
+= Chicken tortilla soup: Spicy chicken broth with shredded chicken, beans, corn, and topped with crispy tortilla strips.: 7.2:3:photos\Chicken tortilla soup.jpg
+= Clam chowder: Rich and creamy soup with tender clams, potatoes, onions, and celery.: 8.5:3:photos\Clam chowder.jpg
+* Drinks
+= Iced mocha: Espresso, milk, chocolate syrup, and ice.: 6.5:1:photos\Iced mocha.jpg
+= Mango smoothie: Mango blended with yogurt, honey, and milk.: 10.0:2:photos\Mango smoothie.jpg
+= Strawberry lemonade: Fresh strawberries blended with basil, lemon juice, and a touch of sugar, served over ice.: 5.0:2:photos\Strawberry lemonade.jpg
+= Matcha latte: Creamy steamed milk with high-quality matcha green tea powder and a hint of honey.: 6.8:2:photos\Matcha latte.jpg
+= Tropical fruit punch: A refreshing mix of pineapple, orange, and passion fruit juices with a splash of grenadine.: 5.5:2:photos\Tropical fruit punch.jpg
+= Peach iced tea: Brewed black tea infused with peach puree and served chilled with ice.: 4.5:2:photos\Peach iced tea.jpg
+= Ginger lemonade: Freshly squeezed lemonade with a spicy kick of ginger syrup.: 5.2:1:photos\Ginger lemonade.jpg
+= Caramel macchiato: Espresso layered with steamed milk and topped with caramel drizzle.: 6.5:2:photos\Caramel macchiato.jpg
+= Watermelon cooler: Fresh watermelon juice blended with lime and served over ice.: 5.0:1:photos\Watermelon cooler.jpg
+= Hazelnut frappe: Chilled coffee blended with hazelnut syrup, milk, and ice, topped with whipped cream.: 6.0:1:photos\Hazelnut frappe.jpg
+* Pasta
+= Baked ziti: Ziti pasta is mixed with a rich marinara sauce and layered with creamy ricotta and shredded mozzarella cheese. The dish is baked until the cheese melts and forms a golden, bubbly crust. Serve hot, straight from the oven.: 5.0:3:photos\Baked ziti.jpg
+= Spaghetti carbonara: Spaghetti tossed with a creamy sauce made of eggs, Parmesan, and crispy pancetta.: 15.5:4:photos\Spaghetti carbonara.jpg
+= Seafood pasta: Linguine cooked with shrimp, scallops, and mussels in a garlic and white wine sauce.: 19.0:5:photos\Seafood pasta.jpg
+= Vegetable primavera: Pasta with sautéed zucchini, bell peppers, tomatoes, and Parmesan cheese.: 14.0:3:photos\Vegetable primavera.jpg
+= Lobster ravioli: Handmade ravioli stuffed with lobster and served in a rich tomato cream sauce.: 22.5:6:photos\Lobster ravioli.jpg
+= Pesto penne: Penne pasta coated with a vibrant basil pesto sauce and sprinkled with toasted pine nuts.: 16.0:4:photos\Pesto penne.jpg
+= Fettuccine alfredo: Fettuccine pasta in a creamy Alfredo sauce made with Parmesan, butter, and cream.: 15.0:4:photos\Fettuccine alfredo.jpg
+= Rigatoni alla vodka: Rigatoni tossed in a creamy tomato vodka sauce, topped with fresh basil.: 16.8:4:photos\Rigatoni alla vodka.jpg
+= Lasagna: Layers of pasta, meat sauce, ricotta, and mozzarella baked to perfection.: 18.0:5:photos\Lasagna.jpg
+= Gnocchi & butter: Soft potato dumplings tossed in a buttery sage sauce.: 17.0:3:photos\Gnocchi & butter.jpg
+* Desserts
+= Chocolate lava cake: Rich chocolate cake with a gooey molten center.: 18.0:3:photos\Chocolate lava cake.jpg
+= Banoffee pie: A pie made with bananas, caramel, and whipped cream on a biscuit crust.: 18.5:4:photos\Banoffee pie.jpg
+= Ice cream sundae: Ice cream topped with chocolate syrup, whipped cream, and a cherry.: 13.2:2:photos\Ice cream sundae.jpg
+= Tiramisu: Classic Italian dessert made with layers of coffee-soaked ladyfingers and mascarpone cream, dusted with cocoa powder.: 16.0:3:photos\Tiramisu.jpg
+= Cheesecake: Creamy baked cheesecake on a graham cracker crust, available in various flavors like strawberry, chocolate, or classic.: 15.5:4:photos\Cheesecake.jpg
+= Apple crumble: Warm spiced apples baked with a buttery crumble topping, served with vanilla ice cream.: 12.5:3:photos\Apple crumble.jpg
+= Profiteroles: Choux pastry filled with vanilla cream and topped with chocolate sauce.: 14.0:3:photos\Profiteroles.jpg
+= Lemon tart: Tangy lemon custard in a buttery pastry shell, topped with a dusting of powdered sugar.: 13.5:3:photos\Lemon tart.jpg

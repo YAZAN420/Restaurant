@@ -1,3 +1,0 @@
-public enum Permission {
-    CHANGE_ROLE,EDIT_MEAL,DELETE_MEAL,ADD_MEAL,MAKE_ORDER
-}

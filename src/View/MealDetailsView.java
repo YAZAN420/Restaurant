@@ -1,26 +1,33 @@
+package View;
+
+import Model.MealModel;
+import Model.RoleModel;
+import Model.UserModel;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class MealDetailsView {
-    Color colorOrange = Palette.AdditionalColor;
-    Color colorBeige = Palette.BackGround; //Color.WHITE
+    Color colorOrange = PaletteView.AdditionalColor;
+    Color colorBeige = PaletteView.BackGround; // Color.WHITE
+    Color buttonColor = new Color(211, 211, 211);
     private JPanel mainPanel;
     private JButton addButton;
     private JButton deleteButton;
     private JButton removeButton;
     private JButton editButton;
     public JLabel photoLabel;
-    public MealDetailsView(Meal meal, ActionListener addAction, ActionListener deleteAction,
-                           ActionListener backAction,ActionListener removeAction,ActionListener editAction) {
+
+    public MealDetailsView(MealModel meal, ActionListener addAction, ActionListener deleteAction,
+            ActionListener backAction, ActionListener removeAction, ActionListener editAction) {
         mainPanel = new JPanel(new BorderLayout());
         mainPanel.setSize(new Dimension(680, 420));
         JPanel detailsPanel = new JPanel(new BorderLayout());
         detailsPanel.setBackground(colorBeige);
         JPanel topDetailsPanel = createDetailsPanel(meal);
-        JPanel bottomButtonPanel = createButtonPanel(addAction, deleteAction, backAction,removeAction,editAction);
-        CustomScrollPane scrollPane = new CustomScrollPane(topDetailsPanel,Color.LIGHT_GRAY,Color.DARK_GRAY);
+        JPanel bottomButtonPanel = createButtonPanel(addAction, deleteAction, backAction, removeAction, editAction);
+        CustomScrollView scrollPane = new CustomScrollView(topDetailsPanel, Color.LIGHT_GRAY, Color.DARK_GRAY);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         detailsPanel.add(scrollPane, BorderLayout.CENTER);
@@ -29,12 +36,13 @@ public class MealDetailsView {
         mainPanel.add(detailsPanel, BorderLayout.CENTER);
         mainPanel.add(photoLabel, BorderLayout.EAST);
     }
-    private JPanel createDetailsPanel(Meal meal) {
+
+    private JPanel createDetailsPanel(MealModel meal) {
         JPanel panel = new JPanel();
         panel.setBackground(colorBeige);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setOpaque(true);
-        Font labelFont = new Font("Serif", Font.BOLD, 32);
+        Font labelFont = new Font(PaletteView.font, Font.BOLD, 32);
         JPanel nameLabel = createPanel("Name", meal.getMealName(), labelFont);
         JPanel categoryLabel = createPanel("Category", meal.getCategory(), labelFont);
         JPanel ingredientsLabel = createPanel("Ingredients", meal.getIngredients(), labelFont);
@@ -57,7 +65,7 @@ public class MealDetailsView {
         labelPanel.setMaximumSize(new Dimension(800, 200));
 
         JLabel titleLabel = new JLabel("<html>" + title + ":<br></html>");
-        titleLabel.setFont(new Font("Serif", Font.BOLD, 38));
+        titleLabel.setFont(new Font(PaletteView.font, Font.BOLD, 38));
         titleLabel.setForeground(colorOrange);
 
         JLabel valueLabel = new JLabel("<html>" + value + "</html>");
@@ -71,7 +79,8 @@ public class MealDetailsView {
         return labelPanel;
     }
 
-    private JPanel createButtonPanel(ActionListener addAction, ActionListener deleteAction, ActionListener backAction,ActionListener removeAction,ActionListener editAction) {
+    private JPanel createButtonPanel(ActionListener addAction, ActionListener deleteAction, ActionListener backAction,
+            ActionListener removeAction, ActionListener editAction) {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
         panel.setOpaque(false);
         JButton backButton = new JButton();
@@ -83,7 +92,7 @@ public class MealDetailsView {
         backButton.setIcon(backIcon);
 
         backButton.setPreferredSize(new Dimension(100, 60));
-        backButton.setBackground(new Color(211, 211, 211));
+        backButton.setBackground(buttonColor);
         backButton.addActionListener(backAction);
         panel.add(backButton);
         addButton = new JButton();
@@ -118,17 +127,17 @@ public class MealDetailsView {
         editButton.setPreferredSize(new Dimension(100, 60));
         removeButton.setPreferredSize(new Dimension(100, 60));
         deleteButton.setPreferredSize(new Dimension(100, 60));
-        removeButton.setBackground(new Color(211, 211, 211));
-        addButton.setBackground(new Color(211, 211, 211));
-        deleteButton.setBackground(new Color(211, 211, 211));
-        editButton.setBackground(new Color(211, 211, 211));
+        removeButton.setBackground(buttonColor);
+        addButton.setBackground(buttonColor);
+        deleteButton.setBackground(buttonColor);
+        editButton.setBackground(buttonColor);
         addButton.addActionListener(addAction);
         removeButton.addActionListener(removeAction);
         deleteButton.addActionListener(deleteAction);
         editButton.addActionListener(editAction);
         removeButton.setVisible(false);
         editButton.setVisible(false);
-        if(User.getCurrentUser().getRole()!=Role.USER){
+        if (UserModel.getCurrentUser().getRole() != RoleModel.USER) {
             removeButton.setVisible(true);
             editButton.setVisible(true);
         }
@@ -138,6 +147,7 @@ public class MealDetailsView {
         panel.add(editButton);
         return panel;
     }
+
     private JLabel createPhotoLabel(String imagePath) {
         JLabel photoLabel = new JLabel();
         photoLabel.setBackground(colorOrange);
@@ -154,9 +164,11 @@ public class MealDetailsView {
         photoLabel.setOpaque(true);
         return photoLabel;
     }
+
     public JPanel getMainPanel() {
         return mainPanel;
     }
+
     public void enableButtons(boolean enable) {
         addButton.setEnabled(enable);
         deleteButton.setEnabled(enable);
