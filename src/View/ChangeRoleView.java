@@ -89,7 +89,7 @@ public class ChangeRoleView {
         emailP.setFont(new Font(PaletteView.font, 0, fontSize));
         panel.add(emailP);
 
-        JLabel curRoleP = new JLabel(curRole, SwingConstants.CENTER);
+        JLabel curRoleP = new JLabel(curRole=="USER"?"CUSTOMER":curRole, SwingConstants.CENTER);
         curRoleP.setFont(new Font(PaletteView.font, 0, fontSize));
         if (curRole == "ADMIN")
             curRoleP.setForeground(PaletteView.Red);
@@ -109,7 +109,7 @@ public class ChangeRoleView {
             newRoleP.setBackground(color);
             newRoleP.setPreferredSize(new Dimension((1080) / 4, 100));
             if (newRole == "EMPLOYEE") {
-                newRoleP.add(createButton("USER", blue, name), BorderLayout.CENTER);
+                newRoleP.add(createButton("CUSTOMER", blue, name), BorderLayout.CENTER);
                 newRoleP.add(createButton("ADMIN", PaletteView.Red, name), BorderLayout.CENTER);
             } else if (newRole == "USER") {
                 newRoleP.add(createButton("EMPLOYEE", PaletteView.green, name), BorderLayout.CENTER);
@@ -127,8 +127,19 @@ public class ChangeRoleView {
         button.setFont(new Font(PaletteView.font, Font.PLAIN, 15));
         button.setPreferredSize(new Dimension(50, 30));
         button.addActionListener(e -> {
-            String msg = "Do you want to set " + name + " as " + text + " ?";
-            int res = JOptionPane.showConfirmDialog(null, msg, "Question", JOptionPane.YES_NO_OPTION);
+            String msg = "Do you want to set " + name + "\n as " + text + " ?";
+            JLabel msgLable = new JLabel(msg); msgLable.setFont(new Font(PaletteView.font,Font.BOLD,15));
+            JOptionPane p = new JOptionPane(msgLable,JOptionPane.QUESTION_MESSAGE,JOptionPane.YES_NO_OPTION,
+                    new ImageIcon(new ImageIcon("photos/AreYouSure!.png").getImage().getScaledInstance(80, 120, Image.SCALE_SMOOTH)));
+
+            JDialog dialog = p.createDialog("Question");
+            dialog.setFont(new Font(PaletteView.font,Font.BOLD,10));
+            dialog.setVisible(true);
+
+            Object selectedValue = p.getValue();
+            if (selectedValue instanceof Integer) {
+            int res = (Integer) selectedValue;
+//
             switch (res) {
                 case JOptionPane.YES_OPTION: {
                     UserModel curUser = UserModel.findUserByName(name);
@@ -138,7 +149,8 @@ public class ChangeRoleView {
                     MainView.mainContent.revalidate();
                     MainView.mainContent.repaint();
                 }
-            }
+
+            }}
         });
 
         return button;
