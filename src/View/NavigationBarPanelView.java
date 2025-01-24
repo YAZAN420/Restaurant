@@ -3,41 +3,54 @@ package View;
 import Model.RoleModel;
 import Model.UserModel;
 
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
-import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
-
 public class NavigationBarPanelView {
     private final JPanel navBar;
     private final JPanel logoPanel;
-
+    private static Clip clip;
+    JWindow transparentW ;
+    long second;
+    JFrame introFrame;
     public NavigationBarPanelView() {
         navBar = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 10));
         navBar.setBackground(PaletteView.MainColor);
-        Dimension fixedSize = new Dimension(Integer.MAX_VALUE, 59);
+        Dimension fixedSize = new Dimension(Integer.MAX_VALUE, 59);//55->60
         navBar.setPreferredSize(fixedSize);
 
         logoPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         logoPanel.setBackground(PaletteView.MainColor);
-        int width = 390;
-        if (UserModel.getCurrentUser().getRole() != RoleModel.ADMIN)
-            width = 450;
-        logoPanel.setPreferredSize(new Dimension(width, 40));
-        JLabel ResNameL = new JLabel("Dish Dash", SwingConstants.CENTER);
-        ResNameL.setForeground(PaletteView.AdditionalColor.brighter());
-        ResNameL.setFont(new Font(PaletteView.font, Font.PLAIN, 30));
-        logoPanel.add(ResNameL, BorderLayout.WEST);
-        Image im = new ImageIcon("photos/Layer 3.png").getImage().getScaledInstance(33, 30, Image.SCALE_SMOOTH);
-        JLabel logoPic = new JLabel(new ImageIcon(im), SwingConstants.CENTER);
-        logoPanel.add(logoPic);
-        logoPanel.add(new JLabel("                                       "));
-        navBar.add(logoPanel);
 
+        try {
+            intro();
+        } catch (Exception ex) {
+            System.out.println("interrupted");
+        }
+        JButton ResNameL= new JButton("Dish Dash"); ResNameL.setBackground(PaletteView.MainColor); ResNameL.setBorder(null);
+        ResNameL.setForeground(PaletteView.AdditionalColor.brighter());
+        ResNameL.setFont(new Font(PaletteView.font,Font.PLAIN,30));
+        ResNameL.addActionListener(e -> {
+            transparentW.setVisible(true);
+            introFrame.setVisible(true);
+
+            if(clip!= null ){ if(clip.isRunning()) clip.stop(); // Ensure the clip is stopped before resetting
+            clip.setMicrosecondPosition(0); // Reset to the beginning
+            second = 0;}
+        });
+        logoPanel.add(ResNameL);
+        Image  im = new ImageIcon("photos/Layer 3.png").getImage().getScaledInstance(33,30,Image.SCALE_SMOOTH);
+        JLabel logoPic  = new JLabel( new ImageIcon(im),SwingConstants.CENTER); logoPanel.add(logoPic);
+        navBar.add(logoPanel);
+        navBar.add(Box.createRigidArea(new Dimension(200,0)));
         ArrayList<String> buttons = new ArrayList<>();
         buttons.add("Home");
         buttons.add("Cart");
@@ -56,7 +69,6 @@ public class NavigationBarPanelView {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (button.getText() == "Home") {
-                        // button.setForeground(Color.cyan);
                         MainView.mainContent.removeAll();
                         MainView.mainContent.add(MainView.menuContentPanel1, BorderLayout.CENTER);
                         MainView.menuContentPanel1.setSelectedCategory("Pizza");
@@ -106,33 +118,24 @@ public class NavigationBarPanelView {
         p.setOpaque(false);
         p.setPreferredSize(new Dimension(35, 35));
         p.add(createRoundedPhotoLabel(UserModel.getCurrentUser().getPhotoPath()), BorderLayout.CENTER);
-        JPanel empty = new JPanel(new BorderLayout());
-        int width2 = 300;
-        if (UserModel.getCurrentUser().getRole() == RoleModel.EMPLOYEE)
-            width2 = 350;
-        else if (UserModel.getCurrentUser().getRole() == RoleModel.USER)
-            width2 = 450;
-        empty.setPreferredSize(new Dimension(width2, 30));
-        empty.setBackground(PaletteView.MainColor);
-
-        RoundButtonView Xbutton = new RoundButtonView(0, "X", true);
-        Xbutton.setBackground(PaletteView.MainColor);
-        Xbutton.setFont(new Font("Arial", Font.BOLD, 40));
-        Xbutton.setBorder(null);
-        Xbutton.setPreferredSize(new Dimension(26, 26));
-        Xbutton.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 10));
-        Xbutton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                MainFrameView.frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-                MainFrameView.frame.dispose();
-            }
-        });
-        empty.add(Xbutton, BorderLayout.EAST);
-
         navBar.add(p);
-        navBar.add(empty);
+
+        int width2 = 248; if(UserModel.getCurrentUser().getRole()==RoleModel.EMPLOYEE ) width2 = 345;
+        else if(UserModel.getCurrentUser().getRole() == RoleModel.USER) width2 =452;
+
+        navBar.add(Box.createRigidArea(new Dimension(width2,0)));
+
+        RoundButtonView Xbutton = new RoundButtonView(0,"X",true); Xbutton.setBackground(PaletteView.MainColor); Xbutton.setFont(new Font("Arial",Font.BOLD,40));
+        Xbutton.setBorder(null); Xbutton.setPreferredSize(new Dimension(26,26)); Xbutton.setBorder(BorderFactory.createEmptyBorder(0,0,10,10));
+        Xbutton.addActionListener(new ActionListener() {
+                  @Override
+                  public void actionPerformed(ActionEvent e) {
+                      System.exit(0);
+                  }
+              });
+        navBar.add(Xbutton, BorderLayout.EAST);
     }
+
 
     public void reRender(String oldName) {
         Arrays.stream(navBar.getComponents())
@@ -142,8 +145,7 @@ public class NavigationBarPanelView {
                     JButton button = (JButton) component;
                     button.setText(UserModel.getCurrentUser().getName());
                 });
-        Arrays.stream(navBar.getComponents())
-                .filter(component -> (component instanceof JPanel && component != logoPanel))
+        Arrays.stream(navBar.getComponents()).filter(component -> (component instanceof JPanel && !(component.equals(logoPanel))))
                 .findAny()
                 .ifPresent(component -> {
                     ((JPanel) component).removeAll();
@@ -157,6 +159,113 @@ public class NavigationBarPanelView {
         navBar.repaint();
     }
 
+    public void intro() throws Exception {
+        introFrame = new JFrame();
+        introFrame.setLayout(new BorderLayout());
+        introFrame.setPreferredSize(new Dimension(750, 500));
+        introFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        introFrame.setUndecorated(true);
+        introFrame.pack();
+        introFrame.setLocationRelativeTo(null);
+
+        transparentW = new JWindow();
+        transparentW.setBackground(new Color(0,0,0,1));
+        transparentW.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+        transparentW.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+                Rectangle frameBounds = introFrame.getBounds();
+
+                if (!frameBounds.contains(e.getPoint())) {
+                    introFrame.setVisible(false);
+                    transparentW.setVisible(false);
+                    if(clip!=null && clip.isRunning()) clip.stop();
+                }
+            }
+        });
+
+        JPanel fullP = new JPanel(new BorderLayout());
+        fullP.setPreferredSize(new Dimension(introFrame.getWidth(),introFrame.getHeight()));
+        fullP.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                introFrame.setVisible(false);
+                transparentW.setVisible(false);
+                if(clip !=null && clip.isRunning()) clip.stop();
+            }
+        });
+
+        JLabel gusteau = new JLabel(new ImageIcon(new ImageIcon("photos/hhhh.jpg").getImage().getScaledInstance(750,400,Image.SCALE_SMOOTH)));
+        fullP.add(gusteau,BorderLayout.NORTH);
+
+        ImageIcon imageIconR = new ImageIcon(new ImageIcon("photos/right.jpg").getImage().getScaledInstance(310,100,Image.SCALE_SMOOTH));
+        ImageIcon imageIconL = new ImageIcon(new ImageIcon("photos/left.jpg").getImage().getScaledInstance(310,100,Image.SCALE_SMOOTH));
+
+        JLabel l = new JLabel(imageIconL);
+        JLabel r = new JLabel(imageIconR);
+        JPanel downP =new JPanel(new FlowLayout(FlowLayout.LEFT,0,0));
+        downP.add(l);
+
+        ImageIcon imageIconPause = new ImageIcon(new ImageIcon("photos/pause.jpg").getImage().getScaledInstance(150,150,Image.SCALE_SMOOTH));
+        ImageIcon imageIconPlay = new ImageIcon(new ImageIcon("photos/play.jpg" ).getImage().getScaledInstance(150,150,Image.SCALE_SMOOTH));
+        JButton button = new JButton(imageIconPlay);
+        button.setBorder(BorderFactory.createEmptyBorder(0,0,20,0));
+        button.setPreferredSize(new Dimension(125,100));
+        button.setBackground(new Color(233, 220, 194));
+        button.addActionListener((e)-> {
+            File audioFile = new File("photos/chefVoice.wav");
+            try {
+
+                if (clip == null) {
+                    AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
+                    clip = AudioSystem.getClip();
+                    clip.open(audioStream);
+                    clip.addLineListener(event -> {
+                        if (event.getType() == LineEvent.Type.STOP && !clip.isRunning()) {
+
+                            button.setIcon(imageIconPlay);
+                            button.revalidate();
+                            button.repaint();
+                        }
+                    });
+                }
+                if (!clip.isRunning()) {
+                    button.setIcon(imageIconPause);button.revalidate();button.repaint();
+
+                    if (second >= clip.getMicrosecondLength() || clip.getMicrosecondPosition() >= clip.getMicrosecondLength()) {
+                        clip.stop();
+                        clip.setMicrosecondPosition(0);
+                        second = 0;
+                    }
+                    clip.setMicrosecondPosition(second);
+
+                    clip.start();
+                    if (second >= clip.getMicrosecondLength() || clip.getMicrosecondPosition() >= clip.getMicrosecondLength()) {
+                        button.setIcon(imageIconPause);
+                        button.revalidate();
+                        button.repaint();
+
+                    }
+                } else {
+                    button.setIcon(imageIconPlay);button.revalidate();button.repaint();
+
+                    second = clip.getMicrosecondPosition();
+                    clip.stop();
+                }
+            } catch (Exception eq) {
+                eq.printStackTrace();
+            }
+        });
+        downP.add(button); downP.add(r);
+        fullP.add(downP);
+        fullP.setBorder(BorderFactory.createDashedBorder(Color.BLACK,2,5,2,true));
+
+        introFrame.add(fullP,BorderLayout.NORTH);
+        introFrame.setVisible(false);
+        transparentW.setVisible(false);
+
+    }
     public JPanel getPanel() {
         return navBar;
     }
