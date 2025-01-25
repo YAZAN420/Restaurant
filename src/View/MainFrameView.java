@@ -15,10 +15,8 @@ public class MainFrameView extends JFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setUndecorated(true);
         frame.setLayout(null);
-        JPanel x = new JPanel();
-        x.setBackground(Color.CYAN);
-        x.setPreferredSize(new Dimension(1920, 100));
-        frame.add(x);
+        Image im =new ImageIcon("photos/logo.png").getImage();  frame.setTitle("Dish Dash");
+        frame.setIconImage(im);
         notificationView = new NotificationView(frame.getWidth());
         frame.add(notificationView.getLabel());
         loginPanel = new LoginView();
